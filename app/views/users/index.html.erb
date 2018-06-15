@@ -13,7 +13,11 @@
         <tr>
             <td><%= user.username%></td>
             <td><%= user.email%></td>
+            <% if user.birthday != nil %>
             <td><%= (Date.today.strftime("%Y%m%d").to_i - user.birthday.strftime("%Y%m%d").to_i) /10000 %></td>
+            <% else %>
+            <td></td>
+            <% end %>
             <td><%= user.sex %></td>
             <td><%= user.company %></td>
         </tr>
