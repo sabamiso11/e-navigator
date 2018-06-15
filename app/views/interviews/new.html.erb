@@ -1,0 +1,5 @@
+<h2>新規面接作成</h2>
+<%= form_for :interview, url: user_interviews_path do |f| %>
+    <%= f.datetime_select :start_interview %>
+    <%= f.submit '登録'%>
+<% end %>
