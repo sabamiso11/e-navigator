@@ -11,7 +11,9 @@
     <header>
       <nav>
         <% if user_signed_in? %>
+          <%= link_to 'E-Navigator', users_path %>
           <%= link_to 'プロフィール変更', edit_user_registration_path %>
+          <%= link_to '自分の面接一覧', user_interviews_path(current_user) %>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'サインアップ', new_user_registration_path %>
