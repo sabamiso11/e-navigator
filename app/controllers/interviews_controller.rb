@@ -4,14 +4,19 @@ class InterviewsController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
+    @interview = @user.interviews.new
   end
 
   def create
-    #@interview = Interview.new(start_interview_patams)
-    #@interview.save
     @user = User.find(params[:user_id])
-    @user.interviews.create(start_interview_patams)
-    redirect_to :action => "index"
+    @interview = @user.interviews.new(start_interview_params)
+    #@interview = @user.interviews.new(start_interview_params)
+    if @interview.save
+      redirect_to :action => "index"
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -22,7 +27,7 @@ class InterviewsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @interview = @user.interviews.find(params[:id])
-    if @interview.update(start_interview_patams)
+    if @interview.update(start_interview_params)
       redirect_to :action => "index"
     else
       render 'edit'
@@ -36,8 +41,19 @@ class InterviewsController < ApplicationController
     redirect_to :action => "index"
   end
 
+  def state
+    user = User.find(params[:user_id])
+    interview = user.interviews.find(params[:id])
+    interview.state = 1
+    interview.save
+    approvaled_interview = user.interviews.where(state: 1).first
+    approvaled_interview.state = 2
+    approvaled_interview.save
+    redirect_to :action => "index"
+  end
+
   private
-  def start_interview_patams
+  def start_interview_params
     params.require(:interview).permit(:start_interview)
   end
 

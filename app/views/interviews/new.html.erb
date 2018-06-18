@@ -1,5 +1,10 @@
 <h2>新規面接作成</h2>
 <%= form_for :interview, url: user_interviews_path do |f| %>
+    <% if @interview.errors.any? %>
+        <% @interview.errors.full_messages.each do |msg| %>
+            <p><%= msg %></p>
+        <% end %>
+    <% end %>
     <%= f.datetime_select :start_interview %>
     <%= f.submit '登録'%>
 <% end %>

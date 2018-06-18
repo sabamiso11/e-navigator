@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
 #  get 'pages/show'
   resources :users do
-    resources :interviews
+    resources :interviews do
+      member do
+        post 'state'
+      end
+    end
   end
 
 

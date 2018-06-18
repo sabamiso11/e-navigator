@@ -20,6 +20,7 @@
             <% end %>
             <td><%= user.sex %></td>
             <td><%= user.company %></td>
+            <td><%= link_to '面接一覧', user_interviews_path(user) %></td>
         </tr>
 <% end %>
     </table>

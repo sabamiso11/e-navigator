@@ -1,0 +1,8 @@
+<h2>My Interview</h2>
+<% if @user.interviews.any? %>
+<% @user.interviews.each do |interview| %>
+    <%= form_for :interview, url: state_user_interview_path(@user, interview) do |f| %>
+        <%= f.submit interview.start_interview.strftime("%Y年%m月%d日 %H時%M分"), data: {confirm: '承認しますか?' }%>
+    <% end %>
+<% end %>
+<% end %>
