@@ -43,9 +43,11 @@ class InterviewsController < ApplicationController
 
   def state
     user = User.find(params[:user_id])
-    approvaled_interview = user.interviews.where(state: 1).first
-    approvaled_interview.state = 2
-    approvaled_interview.save
+    approvaled_interview = user.interviews.find_by(state: 1)
+    if !approvaled_interview.nil?
+      approvaled_interview.state = 2
+      approvaled_interview.save
+    end
     interview = user.interviews.find(params[:id])
     interview.state = 1
     interview.save
