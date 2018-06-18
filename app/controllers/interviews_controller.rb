@@ -43,12 +43,12 @@ class InterviewsController < ApplicationController
 
   def state
     user = User.find(params[:user_id])
-    interview = user.interviews.find(params[:id])
-    interview.state = 1
-    interview.save
     approvaled_interview = user.interviews.where(state: 1).first
     approvaled_interview.state = 2
     approvaled_interview.save
+    interview = user.interviews.find(params[:id])
+    interview.state = 1
+    interview.save
     redirect_to :action => "index"
   end
 
