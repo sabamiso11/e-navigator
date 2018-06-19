@@ -1,6 +1,7 @@
 class InterviewsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
+    @interviews = @user.interviews.all.order(start_interview: "ASC")
   end
 
   def new
@@ -44,7 +45,7 @@ class InterviewsController < ApplicationController
   def state
     user = User.find(params[:user_id])
     approvaled_interview = user.interviews.find_by(state: 1)
-    if !approvaled_interview.nil?
+    unless approvaled_interview.nil?
       approvaled_interview.state = 2
       approvaled_interview.save
     end
