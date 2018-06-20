@@ -34,6 +34,13 @@ class InterviewsController < ApplicationController
         end
     end
 
+    def destroy
+        @user = User.find(params[:user_id])
+        @interview = @user.interviews.find(params[:id])
+        @interview.destroy
+        redirect_to :action => "index"
+    end
+
     private
     def start_interview_params
       params.require(:interview).permit(:start_interview)
