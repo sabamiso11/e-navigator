@@ -1,5 +1,12 @@
 <h2>面接日程編集</h2>
 <%= form_for @interview, url: user_interview_path(@user, @interview) do |f| %>
+    <% if !@interview.valid? %>
+        <% if !@interview.errors.nil? %>
+            <% @interview.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
+            <% end %>
+        <% end %>
+    <% end %>
     <%= f.datetime_select :start_interview %>
     <%= f.submit '登録'%>
 <% end %>

@@ -6,7 +6,7 @@ class InterviewsController < ApplicationController
 
     def new
         @user = User.find(params[:user_id])
-        @interviews = @user.interviews.new
+        @interview = @user.interviews.new
     end
 
     def create
@@ -15,7 +15,8 @@ class InterviewsController < ApplicationController
         if @interview.save
           redirect_to :action => "index"
         else
-          render 'new'
+            #render plain: @interview.errors.inspect
+            render 'new'
         end
     end
 
