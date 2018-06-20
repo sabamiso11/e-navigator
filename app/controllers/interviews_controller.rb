@@ -24,6 +24,16 @@ class InterviewsController < ApplicationController
         @interview = @user.interviews.find(params[:id])
     end
 
+    def update
+        @user = User.find(params[:user_id])
+        @interview = @user.interviews.find(params[:id])
+        if @interview.update(start_interview_params)
+          redirect_to :action => "index"
+        else
+          render 'edit'
+        end
+    end
+
     private
     def start_interview_params
       params.require(:interview).permit(:start_interview)
