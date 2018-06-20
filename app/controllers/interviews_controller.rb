@@ -19,6 +19,11 @@ class InterviewsController < ApplicationController
         end
     end
 
+    def edit
+        @user = User.find(params[:user_id])
+        @interview = @user.interviews.find(params[:id])
+    end
+
     private
     def start_interview_params
       params.require(:interview).permit(:start_interview)
