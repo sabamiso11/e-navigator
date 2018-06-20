@@ -1,4 +1,5 @@
 <h2>My Interview</h2>
+<%= link_to '新規作成', new_user_interview_path %>
 <% if @interviews.any? %>
     <% @interviews.each do |interview| %>
         <p><%= interview.start_interview.strftime("%Y年%m月%d日 %H時%M分") %>
