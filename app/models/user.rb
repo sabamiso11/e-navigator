@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   
   enum sex: { 男:1, 女:2}
-
+  has_many :interviews
 end
