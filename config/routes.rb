@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :interviews do
+      member do
+        post 'state'
+      end
     end
   end
 
