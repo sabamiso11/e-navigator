@@ -42,6 +42,19 @@ class InterviewsController < ApplicationController
         redirect_to :action => "index"
     end
 
+    def state
+        user = User.find(params[:user_id])
+        approvaled_interview = user.interviews.find_by(state: 1)
+        unless approvaled_interview.nil?
+          approvaled_interview.state = 2
+          approvaled_interview.save
+        end
+        interview = user.interviews.find(params[:id])
+        interview.state = 1
+        interview.save
+        redirect_to :action => "index"
+    end
+
     private
     def start_interview_params
       params.require(:interview).permit(:start_interview)
