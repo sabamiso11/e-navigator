@@ -6,7 +6,7 @@
     <%= interview.state %>
     <% if interview.state != "承認"%>
         <%= link_to '編集', edit_user_interview_path(@user, interview) %>
-        <%= link_to '削除', user_interview_path(@user, interview), method: :delete, data: {confirm: 'Sure?' } %>
+        <%= link_to '削除', user_interview_path(@user, interview), method: :delete, data: { confirm: 'Sure?' } %>
     <% end %>    
     </p>
 <% end %>
