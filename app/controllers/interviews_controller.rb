@@ -46,19 +46,11 @@ class InterviewsController < ApplicationController
     def state
         @user = User.find(params[:user_id])
         @interviews = @user.interviews.all.order(start_interview: "ASC")
-        approvaled_interview = @user.interviews.find_by(state: 1)
-#        unless approvaled_interview.nil?
-#          approvaled_interview.state = 2
-#          approvaled_interview.save
-#        end
         @interview = @user.interviews.find(params[:id])
         @interview.state = 1
         if @interview.save
-            #approvaled_interview.save
-            unless approvaled_interview.nil?
-                approvaled_interview.state = 2
-                approvaled_interview.save!(validate: false)
-              end
+            approvaled_interview = @user.interviews.where(state: [0, 1]).where.not(id: @interview.id)
+            approvaled_interview.update_all(state: 2)
             redirect_to :action => "index"
         else
             #render plain: @interviews.errors.inspect
