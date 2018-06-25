@@ -57,7 +57,7 @@ class InterviewsController < ApplicationController
             #approvaled_interview.save
             unless approvaled_interview.nil?
                 approvaled_interview.state = 2
-                approvaled_interview.save
+                approvaled_interview.save!(validate: false)
               end
             redirect_to :action => "index"
         else
