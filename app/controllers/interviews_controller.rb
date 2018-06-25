@@ -2,6 +2,7 @@ class InterviewsController < ApplicationController
     def index
         @user = User.find(params[:user_id])
         @interviews = @user.interviews.all.order(start_interview: "ASC")
+        @interview = @user.interviews.new
     end
 
     def new
@@ -43,16 +44,27 @@ class InterviewsController < ApplicationController
     end
 
     def state
-        user = User.find(params[:user_id])
-        approvaled_interview = user.interviews.find_by(state: 1)
-        unless approvaled_interview.nil?
-          approvaled_interview.state = 2
-          approvaled_interview.save
+        @user = User.find(params[:user_id])
+        @interviews = @user.interviews.all.order(start_interview: "ASC")
+        approvaled_interview = @user.interviews.find_by(state: 1)
+#        unless approvaled_interview.nil?
+#          approvaled_interview.state = 2
+#          approvaled_interview.save
+#        end
+        @interview = @user.interviews.find(params[:id])
+        @interview.state = 1
+        if @interview.save
+            #approvaled_interview.save
+            unless approvaled_interview.nil?
+                approvaled_interview.state = 2
+                approvaled_interview.save
+              end
+            redirect_to :action => "index"
+        else
+            #render plain: @interviews.errors.inspect
+            #render :file => "_error.html.erb"
+            render 'index'
         end
-        interview = user.interviews.find(params[:id])
-        interview.state = 1
-        interview.save
-        redirect_to :action => "index"
     end
 
     private
