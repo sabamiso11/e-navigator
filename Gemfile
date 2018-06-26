@@ -22,6 +22,9 @@ gem 'uglifier', '>= 1.3.0'
 # Devise
 gem 'devise'
 
+# .env から環境変数を読み込み
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
