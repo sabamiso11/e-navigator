@@ -51,6 +51,8 @@ class InterviewsController < ApplicationController
     if @interview.save
       dismissing_interview = @user.interviews.where(state: [0, 1]).where.not(id: @interview.id)
       dismissing_interview.update_all(state: 2)
+      NotificationMailer.interviewer_approval(current_user, @user).deliver_later
+      NotificationMailer.examinee_approval(current_user, @user).deliver_later
       redirect_to :action => "index"
     else
       #render plain: @interviews.errors.inspect
