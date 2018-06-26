@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :interviews do
       post 'state', on: :member
     end
+    post 'desired', on: :member
   end
 
   resources :users
