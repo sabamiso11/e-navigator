@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3><%= @examinee.username %>さんの面接希望日が決定しました。</h3>
+    <p>以下のリンクよりご確認ください</p>
+    <p><%= link_to '面接希望日の確認', user_interviews_url(@examinee) %></p>
+  </body>
+</html>
