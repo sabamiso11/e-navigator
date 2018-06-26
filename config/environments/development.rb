@@ -49,14 +49,16 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # mailer setting
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: ENV['address'],
-  port: ENV['port'],
-  domain: ENV['domain'],
-  user_name: ENV['user_name'],
-  password: ENV['password']
+  address: 'smtp.gmail.com',
+  port: 587,
+  domain: 'gmail.com',
+  user_name: ENV['USER_NAME'],
+  password: ENV['PASSWORD'],
+  authentication: 'plain',
+  enable_starttls_auto: true
 }
 
   # Use an evented file watcher to asynchronously detect changes in source code,
