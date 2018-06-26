@@ -49,8 +49,8 @@ class InterviewsController < ApplicationController
         @interview = @user.interviews.find(params[:id])
         @interview.state = 1
         if @interview.save
-            approvaled_interview = @user.interviews.where(state: [0, 1]).where.not(id: @interview.id)
-            approvaled_interview.update_all(state: 2)
+            dismissing_interview = @user.interviews.where(state: [0, 1]).where.not(id: @interview.id)
+            dismissing_interview.update_all(state: 2)
             redirect_to :action => "index"
         else
             #render plain: @interviews.errors.inspect
