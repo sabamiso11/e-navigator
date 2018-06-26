@@ -5,7 +5,7 @@
   </head>
   <body>
     <h3><%= @examinee.username %>さんの面接日程が<%= @interviewer.username %>さんによって承認されました。</h3>
-    <p>面接日時:<%= @interview.start_interview %></p>
+    <p>面接日時:<%= @interview.start_interview.strftime("%Y年%m月%d日 %H時%M分") %></p>
     <p>面接方法等について、担当人事の方から再度連絡させていただきます。</p>
     <p>よろしくお願いします。</p>
   </body>
