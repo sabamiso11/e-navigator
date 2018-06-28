@@ -53,6 +53,7 @@ class InterviewsController < ApplicationController
       dismissing_interview.update_all(state: 2)
       NotificationMailer.interviewer_approval(current_user, @user).deliver_later
       NotificationMailer.examinee_approval(current_user, @user).deliver_later
+      flash[:notice_interview] = "面接日程の承認通知を送信しました"
       redirect_to :action => "index"
     else
       #render plain: @interviews.errors.inspect
