@@ -1,15 +1,18 @@
 <h2>My Interview</h2>
 <%= link_to '新規作成', new_user_interview_path %>
 <% if @interviews.any? %>
+  <table class="table table-striped">
   <% @interviews.each do |interview| %>
-    <p><%= interview.start_interview.strftime("%Y年%m月%d日 %H時%M分") %>
-    <%= interview.state %>
+    <tr>
+    <th class="row"><%= interview.start_interview.strftime("%Y年%m月%d日 %H時%M分") %></th>
+    <td><%= interview.state %></td>
     <% if interview.state == "保留" %>
-      <%= link_to '編集', edit_user_interview_path(@user, interview) %>
-      <%= link_to '削除', user_interview_path(@user, interview), method: :delete, data: { confirm: 'Sure?' } %>
+      <td><%= link_to '編集', edit_user_interview_path(@user, interview), class: "btn btn-secondary" %></td>
+      <td><%= link_to '削除', user_interview_path(@user, interview), method: :delete, data: { confirm: 'Sure?' }, class: "btn btn-danger" %></td>
     <% end %>
-    </p>    
+    </tr>
   <% end %>
+  </table>
   <%= form_tag(desired_user_path(:user), method: :post) do %>
     <%= collection_select(:user, :id, User.where.not(id: current_user.id), :id, :username) %>
     <%= submit_tag '申請'%>
