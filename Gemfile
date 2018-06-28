@@ -25,6 +25,9 @@ gem 'devise'
 # .env から環境変数を読み込み
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
+# Bootstrap4
+gem 'bootstrap', '~> 4.0.0.alpha3'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
