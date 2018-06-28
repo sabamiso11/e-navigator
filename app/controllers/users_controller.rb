@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user][:id])
     NotificationMailer.interviewer_desired(@user, current_user).deliver_later
     NotificationMailer.examinee_desired(current_user).deliver_later
+    flash[:notice_interview] = "面接希望申請を送信しました"
     redirect_to :action => "index"
   end
 end
