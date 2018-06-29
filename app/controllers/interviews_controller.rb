@@ -34,6 +34,7 @@ class InterviewsController < ApplicationController
   def destroy
     @interview = @user.interviews.find(params[:id])
     @interview.destroy
+    flash[:notice_interview] = "面接日程を削除しました"
     redirect_to :action => "index"
   end
 
