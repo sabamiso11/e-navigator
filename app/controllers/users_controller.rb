@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def desired
-    @user = User.find(params[:user][:id])
+    @user = User.find(params[:user_id])
     NotificationMailer.interviewer_desired(@user, current_user).deliver_later
     NotificationMailer.examinee_desired(current_user).deliver_later
     flash[:notice_interview] = "面接希望申請を送信しました"
