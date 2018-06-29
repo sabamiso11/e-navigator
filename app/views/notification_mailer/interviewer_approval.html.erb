@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3><%= @examinee.username %>さんの面接日程が<%= @interviewer.username %>さんによって承認されました。</h3>
+    <p>面接日時:<%= @interview.start_interview.strftime("%Y年%m月%d日 %H時%M分") %></p>
+    <p>面接方法等について、<%= @examinee.username %>さんにご連絡ください</p>
+  </body>
+</html>

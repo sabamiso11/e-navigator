@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
     def sign_in_required
       redirect_to_new_user_session_url unless user_signed_in?
     end
+
+    def find_user
+      @user = User.find(params[:user_id])
+    end
 end
