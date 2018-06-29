@@ -25,6 +25,7 @@ class InterviewsController < ApplicationController
   def update
     @interview = @user.interviews.find(params[:id])
     if @interview.update(start_interview_params)
+      flash[:notice_interview] = "面接日程を編集しました"
       redirect_to :action => "index"
     else
       render 'edit'
