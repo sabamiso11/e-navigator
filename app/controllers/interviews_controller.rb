@@ -12,6 +12,7 @@ class InterviewsController < ApplicationController
   def create
     @interview = @user.interviews.new(start_interview_params)
     if @interview.save
+      flash[:notice_interview] = "面接日程を追加しました"
       redirect_to :action => "index"
     else
       render 'new'
